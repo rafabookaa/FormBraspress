@@ -41,7 +41,7 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   //pegando os valores dos campos
   const nomeForm = form.nome.value; 
   const pesoForm = form.peso.value; 
-  const alturaForm = form.peso.value; 
+  const alturaForm = form.altura.value; 
   const gorduraForm = form.gordura.value; 
 
   let pacienteTr = document.createElement("tr"); //criando um tr
@@ -51,7 +51,7 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   let pesoTd = document.createElement("td");
   let alturaTd = document.createElement("td");
   let gorduraTd = document.createElement("td");
-  let imcTd = document.createElement("td")
+  let imcTd = document.createElement("td");
   
 //adicionando os valores dentro das tds
   nomeTd.textContent = nomeForm;
@@ -66,6 +66,11 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   pacienteTr.appendChild(alturaTd);
   pacienteTr.appendChild(gorduraTd); 
 
+//pegando a tabela no html
+  let tabela = document.querySelector("#tabela-pacientes");
+
+  //adicionando o paciente na tabela do html
+  tabela.appendChild(pacienteTr);
 
 })
 
