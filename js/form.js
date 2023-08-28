@@ -5,26 +5,12 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
 
   let form = document.querySelector("#form-adiciona") //pegando o formulario
 
-  let paciente = obtemPacienteDoFormulario (form)
-  console.log(paciente);
+  let paciente = obtemPacienteDoFormulario (form);
   
-  var criar = criandoTags();
-  console.log(criar)
+  let pacienteTr = montaTr(paciente);
+  console.log(pacienteTr);
   
-//adicionando os valores dentro das tds
-  nomeTd.textContent = paciente.nomeForm;
-  pesoTd.textContent = paciente.pesoForm;
-  alturaTd.textContent = paciente.alturaForm;
-  gorduraTd.textContent = paciente.gorduraForm;
-  imcTd.textContent = paciente.imcForm;
-  
-
-//colocando os tds dentro do tr
-  pacienteTr.appendChild(nomeTd);
-  pacienteTr.appendChild(pesoTd);
-  pacienteTr.appendChild(alturaTd);
-  pacienteTr.appendChild(gorduraTd); 
-  pacienteTr.appendChild(imcTd);
+ 
 
 //pegando a tabela no html
   let tabela = document.querySelector("#tabela-pacientes");
@@ -44,19 +30,39 @@ function obtemPacienteDoFormulario (form) {
     gorduraForm: form.gordura.value,
     imcForm: calculaImc(form.peso.value, form.altura.value)
   }
-
-  return paciente; 
-  
+  return paciente;   
 }
 
-function criandoTags () {
+function montaTr (paciente) {
+  
   let pacienteTr = document.createElement("tr");  
   let nomeTd = document.createElement("td"); 
   let pesoTd = document.createElement("td");
   let alturaTd = document.createElement("td");
   let gorduraTd = document.createElement("td");
   let imcTd = document.createElement("td");
+  
+//adicionando os valores dentro das tds
+  nomeTd.textContent = paciente.nomeForm;
+  pesoTd.textContent = paciente.pesoForm;
+  alturaTd.textContent = paciente.alturaForm;
+  gorduraTd.textContent = paciente.gorduraForm;
+  imcTd.textContent = paciente.imcForm;
+  
+
+//colocando os tds dentro do tr
+  pacienteTr.appendChild(nomeTd);
+  pacienteTr.appendChild(pesoTd);
+  pacienteTr.appendChild(alturaTd);
+  pacienteTr.appendChild(gorduraTd); 
+  pacienteTr.appendChild(imcTd);
+
+
+  return pacienteTr;
+
 }
+
+
 
 // titulo.addEventListener("click", (retornaClick) => {
 //   console.log("Olá eu fui clicado");
