@@ -4,29 +4,19 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   event.preventDefault();
 
   let form = document.querySelector("#form-adiciona") //pegando o formulario
+
+  let paciente = obtemPacienteDoFormulario (form)
+  console.log(paciente);
   
-  //pegando os valores dos campos
-  const nomeForm = form.nome.value; 
-  const pesoForm = form.peso.value; 
-  const alturaForm = form.altura.value; 
-  const gorduraForm = form.gordura.value; 
-  const imcForm = calculaImc(pesoForm, alturaForm);
-
-  let pacienteTr = document.createElement("tr"); //criando um tr
-
-  //criando tds
-  let nomeTd = document.createElement("td"); 
-  let pesoTd = document.createElement("td");
-  let alturaTd = document.createElement("td");
-  let gorduraTd = document.createElement("td");
-  let imcTd = document.createElement("td");
+  var criar = criandoTags();
+  console.log(criar)
   
 //adicionando os valores dentro das tds
-  nomeTd.textContent = nomeForm;
-  pesoTd.textContent = pesoForm;
-  alturaTd.textContent = alturaForm;
-  gorduraTd.textContent = gorduraForm;
-  imcTd.textContent = imcForm;
+  nomeTd.textContent = paciente.nomeForm;
+  pesoTd.textContent = paciente.pesoForm;
+  alturaTd.textContent = paciente.alturaForm;
+  gorduraTd.textContent = paciente.gorduraForm;
+  imcTd.textContent = paciente.imcForm;
   
 
 //colocando os tds dentro do tr
@@ -44,6 +34,29 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
 
   
 })
+
+function obtemPacienteDoFormulario (form) {
+  
+  var paciente = {
+    nomeForm: form.nome.value,
+    pesoForm: form.peso.value,
+    alturaForm: form.altura.value,
+    gorduraForm: form.gordura.value,
+    imcForm: calculaImc(form.peso.value, form.altura.value)
+  }
+
+  return paciente; 
+  
+}
+
+function criandoTags () {
+  let pacienteTr = document.createElement("tr");  
+  let nomeTd = document.createElement("td"); 
+  let pesoTd = document.createElement("td");
+  let alturaTd = document.createElement("td");
+  let gorduraTd = document.createElement("td");
+  let imcTd = document.createElement("td");
+}
 
 // titulo.addEventListener("click", (retornaClick) => {
 //   console.log("Olá eu fui clicado");
