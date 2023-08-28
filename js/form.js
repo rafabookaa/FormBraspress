@@ -26,7 +26,7 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   pesoTd.textContent = pesoForm;
   alturaTd.textContent = alturaForm;
   gorduraTd.textContent = gorduraForm;
-  imcTd.textContent = imcForm.toFixed(2);
+  imcTd.textContent = imcForm;
   
 
 //colocando os tds dentro do tr

@@ -14,12 +14,12 @@ for (let i = 0; i < pacientes.length; i++) {
   const imcVazio = cadaPaciente.querySelector(".info-imc");
 
   function calculaImc (peso, altura) {
-    return imc = peso / (altura * altura);
+    return imc = (peso / (altura * altura)).toFixed(2);
   }
   
   calculaImc(tdPeso, tdAltura);
 
-  imcVazio.textContent = imc.toFixed(2);
+  imcVazio.textContent = imc;
 
   let pesoEhValido = true;
   let alturaEhValida = true;
