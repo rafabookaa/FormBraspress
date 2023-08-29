@@ -9,7 +9,14 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   
   let pacienteTr = montaTr(paciente);
 
+  if(!validaPaciente(paciente)) {
+    alert('Paciente Invalido, favor verificar valores digitados')
+    return;
+  }
+
   form.reset(); //limpar os campos do formulario.
+
+  // validaPaciente(paciente);
  
   //pegando a tabela no html
   let tabela = document.querySelector("#tabela-pacientes");
@@ -30,7 +37,8 @@ function obtemPacienteDoFormulario (form) {
   }
   return paciente;   
 }
-
+  
+// validaAltura(paciente.alturaForm);
 function montaTr (paciente) {
   
   let pacienteTr = document.createElement("tr"); //criando Tr
@@ -44,9 +52,6 @@ function montaTr (paciente) {
   pacienteTr.appendChild(criaTd(paciente.imcForm, "info-imc"));
 
   return pacienteTr;
-
-  
-
 }
 
 function criaTd (dadoPaciente, classe) {
@@ -56,6 +61,17 @@ function criaTd (dadoPaciente, classe) {
 
   return td;
 }
+
+function validaPaciente(paciente) {
+  if(validaPeso(paciente.pesoForm) && validaAltura(paciente.alturaForm)) {
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
+
 
 
 

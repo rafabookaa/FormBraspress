@@ -21,19 +21,35 @@ for (let i = 0; i < pacientes.length; i++) {
 
   imcVazio.textContent = imc;
 
-  let pesoEhValido = true;
-  let alturaEhValida = true;
+  let pesoEhValido = validaPeso(tdPeso);
+  let alturaEhValida = validaAltura(tdAltura);
 
-  if (tdPeso <= 0 || tdPeso >= 600) {
+  if (!pesoEhValido) {
     pesoEhValido = false;
     imcVazio.textContent = "Peso Invalido";
     cadaPaciente.classList.add("paciente-invalido");
   }
 
-  if (tdAltura <= 0 || tdAltura >= 3.0) {
+  if (!alturaEhValida) {
     alturaEhValida = false;
     imcVazio.textContent = "Altura Inválida";
     cadaPaciente.classList.add("paciente-invalido");
+  }
+}
+
+function validaPeso(peso) {
+  if(peso >= 0 && peso < 1000) {
+      return true;
+  } else {
+    return false;
+  }
+}
+
+function validaAltura(altura) {
+  if(altura >= 0 && altura <= 3.00) {
+    return true;
+  } else {
+    return false; 
   }
 }
 
