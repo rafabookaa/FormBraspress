@@ -10,7 +10,8 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   let pacienteTr = montaTr(paciente);
 
   if(!validaPaciente(paciente)) {
-    alert('Paciente Invalido, favor verificar valores digitados')
+    let mensagemErro = document.querySelector(".mensagem")
+    mensagemErro.textContent = "Paciente com dados invalidos, favor verifique os campos preenchidos";
     return;
   }
 
