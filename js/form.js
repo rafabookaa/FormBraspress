@@ -8,16 +8,14 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   let paciente = obtemPacienteDoFormulario (form);
   
   let pacienteTr = montaTr(paciente);
-  console.log(pacienteTr);
-  
- 
 
-//pegando a tabela no html
+  form.reset(); //limpar os campos do formulario.
+ 
+  //pegando a tabela no html
   let tabela = document.querySelector("#tabela-pacientes");
 
   //adicionando o paciente na tabela do html
   tabela.appendChild(pacienteTr);
-
   
 })
 
@@ -35,31 +33,28 @@ function obtemPacienteDoFormulario (form) {
 
 function montaTr (paciente) {
   
-  let pacienteTr = document.createElement("tr");  
-  let nomeTd = document.createElement("td"); 
-  let pesoTd = document.createElement("td");
-  let alturaTd = document.createElement("td");
-  let gorduraTd = document.createElement("td");
-  let imcTd = document.createElement("td");
-  
-//adicionando os valores dentro das tds
-  nomeTd.textContent = paciente.nomeForm;
-  pesoTd.textContent = paciente.pesoForm;
-  alturaTd.textContent = paciente.alturaForm;
-  gorduraTd.textContent = paciente.gorduraForm;
-  imcTd.textContent = paciente.imcForm;
-  
+  let pacienteTr = document.createElement("tr"); //criando Tr
+  pacienteTr.classList.add("paciente") //adicionando a classe paciente ao Tr
 
 //colocando os tds dentro do tr
-  pacienteTr.appendChild(nomeTd);
-  pacienteTr.appendChild(pesoTd);
-  pacienteTr.appendChild(alturaTd);
-  pacienteTr.appendChild(gorduraTd); 
-  pacienteTr.appendChild(imcTd);
-
+  pacienteTr.appendChild(criaTd(paciente.nomeForm, "info-nome"));
+  pacienteTr.appendChild(criaTd(paciente.pesoForm, "info-peso"));
+  pacienteTr.appendChild(criaTd(paciente.alturaForm, "info-altura"));
+  pacienteTr.appendChild(criaTd(paciente.gorduraForm, "info-gordura")); 
+  pacienteTr.appendChild(criaTd(paciente.imcForm, "info-imc"));
 
   return pacienteTr;
 
+  
+
+}
+
+function criaTd (dadoPaciente, classe) {
+  let td = document.createElement("td");
+  td.textContent = dadoPaciente;
+  td.classList.add(classe);
+
+  return td;
 }
 
 
