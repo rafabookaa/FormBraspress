@@ -9,26 +9,16 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   
   let pacienteTr = montaTr(paciente);
 
-  if(!validaPesoForm(paciente)) {
-    let mensagemErro = document.querySelector(".mensagem")
-    mensagemErro.textContent = "Peso inválido";
+  let erros = validaPaciente(paciente);
+
+  if(erros.length > 0) {
+    exibMensagensDeErro(erros);
     return;
   }
-
-  if(!validaAlturaForm(paciente)) {
-    let mensagemErro = document.querySelector(".mensagem")
-    mensagemErro.textContent = "Altura inválida";
-    return;
-  }
-
-  if(!validaCampo(paciente)) {
-    let mensagemErro = document.querySelector(".mensagem")
-    mensagemErro.textContent = "Algum dos campos deixou de ser conhecido. ";
-    return;
-  }
-
 
   form.reset(); //limpar os campos do formulario.
+  var limpaErro = document.querySelector(".mensagem");
+  limpaErro.innerHTML = "";
 
   //pegando a tabela no html
   let tabela = document.querySelector("#tabela-pacientes");
@@ -37,6 +27,17 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   tabela.appendChild(pacienteTr);
   
 })
+
+function exibMensagensDeErro(erros) {
+  let ul = document.querySelector(".mensagem");
+  ul.innerHTML = ""; // quando realizar novo teste vai zerar a ul.
+  erros.forEach(recebeErro => {
+    let li = document.createElement("li")
+    li.textContent = recebeErro;
+    ul.appendChild(li);
+  });
+  
+}
 
 function obtemPacienteDoFormulario (form) {
   
@@ -74,30 +75,29 @@ function criaTd (dadoPaciente, classe) {
   return td;
 }
 
-function validaPesoForm(paciente) {
-  if(validaPeso(paciente.pesoForm)) {
-    return true;
-  } else {
-    return false;
-  } 
+
+function validaPaciente(paciente) {
+
+  let erros = [];
+
+  if(paciente.nomeForm.length == 0) erros.push("Campo nome em branco")
+
+  if(!validaPeso(paciente.pesoForm )) erros.push("Peso inválido")
+  
+  if(!validaAltura(paciente.alturaForm )) erros.push("Altura Invalida")
+
+  if(paciente.gorduraForm.length == 0) erros.push("Campo gordura em branco")
+
+  if(paciente.pesoForm.length == 0) erros.push("O campo peso está em branco")
+
+  if(paciente.alturaForm.length == 0) erros.push("O campo altura está em branco")
+  
+  return erros;
 
 }
 
-function validaAlturaForm(paciente) {
-  if(validaAltura(paciente.alturaForm)){
-    return true;
-  } else {
-    return false;
-  }
-}
 
-function validaCampo (paciente) {
-  if(paciente.nome === null || paciente.pesoForm === null || paciente.alturaForm === null || paciente.gorduraForm === null) {
-    return true;
-  } else {
-    return false; 
-  }
-}
+
 
 
 
