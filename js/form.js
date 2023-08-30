@@ -9,16 +9,27 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   
   let pacienteTr = montaTr(paciente);
 
-  if(!validaPaciente(paciente)) {
+  if(!validaPesoForm(paciente)) {
     let mensagemErro = document.querySelector(".mensagem")
-    mensagemErro.textContent = "Paciente com dados invalidos, favor verifique os campos preenchidos";
+    mensagemErro.textContent = "Peso inválido";
     return;
   }
 
+  if(!validaAlturaForm(paciente)) {
+    let mensagemErro = document.querySelector(".mensagem")
+    mensagemErro.textContent = "Altura inválida";
+    return;
+  }
+
+  if(!validaCampo(paciente)) {
+    let mensagemErro = document.querySelector(".mensagem")
+    mensagemErro.textContent = "Algum dos campos deixou de ser conhecido. ";
+    return;
+  }
+
+
   form.reset(); //limpar os campos do formulario.
 
-  // validaPaciente(paciente);
- 
   //pegando a tabela no html
   let tabela = document.querySelector("#tabela-pacientes");
 
@@ -63,13 +74,29 @@ function criaTd (dadoPaciente, classe) {
   return td;
 }
 
-function validaPaciente(paciente) {
-  if(validaPeso(paciente.pesoForm) && validaAltura(paciente.alturaForm)) {
+function validaPesoForm(paciente) {
+  if(validaPeso(paciente.pesoForm)) {
+    return true;
+  } else {
+    return false;
+  } 
+
+}
+
+function validaAlturaForm(paciente) {
+  if(validaAltura(paciente.alturaForm)){
     return true;
   } else {
     return false;
   }
+}
 
+function validaCampo (paciente) {
+  if(paciente.nome === null || paciente.pesoForm === null || paciente.alturaForm === null || paciente.gorduraForm === null) {
+    return true;
+  } else {
+    return false; 
+  }
 }
 
 
