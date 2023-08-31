@@ -1,7 +1,7 @@
-let titulo = document.querySelector(".titulo"); //pegando o que tem no h1
-titulo.textContent = "Braspress"; // substituindo o que tem na variavel por uma nova string
+// let titulo = document.querySelector(".titulo"); //pegando o que tem no h1
+// titulo.textContent = "Braspress"; // substituindo o que tem na variavel por uma nova string
 
-console.log(titulo);
+// console.log(titulo);
 
 const pacientes = document.querySelectorAll(".paciente");
 
