@@ -28,6 +28,7 @@ pegaBotao.addEventListener("click", (buscaInformacao) => {
   
 })
 
+
 function exibMensagensDeErro(erros) {
   let ul = document.querySelector(".mensagem");
   ul.innerHTML = ""; // quando realizar novo teste vai zerar a ul.
