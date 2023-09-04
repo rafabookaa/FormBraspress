@@ -1,12 +1,13 @@
 
 let pegaBotao = document.querySelector("#adicionar-paciente");
-pegaBotao.addEventListener("click", function (event) {
+pegaBotao.addEventListener("click", (event) => {
   event.preventDefault();
 
   let form = document.querySelector("#form-adiciona") //pegando o formulario
+
   let paciente = obtemPacienteDoFormulario (form);
-  criaPaciente(paciente);
   
+  adicionaPacienteNaTabela(paciente);
 
   let erros = validaPaciente(paciente);
   
@@ -19,7 +20,16 @@ pegaBotao.addEventListener("click", function (event) {
   form.reset(); //limpar os campos do formulario.
   var limpaErro = document.querySelector(".mensagem");
   limpaErro.innerHTML = "";  
+  
 })
+
+function adicionaPacienteNaTabela(paciente){
+  let pacienteTr = montaTr(paciente);
+  //pegando a tabela no html
+let tabela = document.querySelector("#tabela-pacientes");
+//adicionando o paciente na tabela do html
+tabela.appendChild(pacienteTr);
+}
 
 
 function exibMensagensDeErro(erros) {
@@ -31,16 +41,6 @@ function exibMensagensDeErro(erros) {
     ul.appendChild(li);
   });
   
-}
-
-function criaPaciente (paciente) {
-  let pacienteTr = montaTr(paciente);
-   //pegando a tabela no html
-   let tabela = document.querySelector("#tabela-pacientes");
-   //adicionando o paciente na tabela do html
-  //  console.log(tabela)
-   tabela.appendChild(pacienteTr);  
-
 }
 
 function obtemPacienteDoFormulario (form) {
